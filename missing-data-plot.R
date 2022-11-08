@@ -10,8 +10,9 @@ glimpse(nov_data)
 
 
 nov_data %>% 
-  select(starts_with("WEEK")) %>%
-  vis_miss()
+  select(starts_with("WEEK"), ARM) %>%
+  vis_miss() +
+  facet_wrap(~ ARM )
 
 
 nov_data %>% 
@@ -24,14 +25,15 @@ ggplot(nov_data,
        aes(x = WEEK27,
            y = WEEK48)) +
   geom_miss_point() + 
-  facet_grid(BMIGR ~ AGEGR)
+  facet_grid(BMIGR ~ AGEGR) +
+  theme_light()
 
 
 ggplot(nov_data,
-       aes(x = WEEK27,
+       aes(x = AGE,
            y = WEEK48)) +
   geom_miss_point() + 
-  facet_grid(AGEGR ~ ARM )
+  facet_grid(BMIGR ~ ARM )
 
 
 
